@@ -1,6 +1,6 @@
-%define uver	0.30.4-1+sds5
-%define sver	0.30.4
-%define apiver	0.30
+%define uver	0.31.0-1+sds9
+%define sver	0.31.0
+%define apiver	0.31
 
 %define major		1
 %define libname		%mklibname va %{major}
@@ -10,7 +10,7 @@ Name:		libva
 # The rather complex versioning is due to the upstream being a patched
 # version of the real upstream libva; when the real upstream 0.5 comes
 # out we will no longer need to use Gwenole's patched version of 0.3
-Version:	0.30.4.1.sds5
+Version:	0.31.0.1.sds9
 Release:	%{mkrel 1}
 Summary:	Video Acceleration (VA) API for Linux
 Group:		System/Libraries
@@ -51,7 +51,7 @@ for p in debian/patches/*.patch; do patch -p1 < $p; done
 
 %build
 autoreconf -i
-%configure2_5x --disable-static --enable-glx
+%configure2_5x --disable-static --enable-glx --enable-i965-driver
 %make
 
 %install
@@ -60,7 +60,7 @@ rm -rf %{buildroot}
 
 # this is a compatibility name for some older apps which don't use the
 # newer soname
-echo ".text"|gcc -xassembler - -o %{buildroot}%{_libdir}/libva.so.%{apiver} -shared -Wl,-soname,libva.so.0 -L%{buildroot}%{_libdir} -lva-x11
+echo ".text"|gcc -xassembler - -o %{buildroot}%{_libdir}/libva.so.%{apiver} -shared -Wl,-soname,libva.so.0 -Wl,-z,noexecstack -L%{buildroot}%{_libdir} -lva-x11
 ln -s libva.so.%{apiver} %{buildroot}%{_libdir}/libva.so.0
 
 find %{buildroot} -regex ".*\.la$" | xargs rm -f --
@@ -83,4 +83,3 @@ rm -rf %{buildroot}
 %{_includedir}/va
 %{_libdir}/%{name}*.so
 %{_libdir}/pkgconfig/%{name}*.pc
-
