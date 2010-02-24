@@ -18,6 +18,7 @@ Group:		System/Libraries
 License:	MIT
 URL:		http://www.splitted-desktop.com/~gbeauchesne/libva/
 Source0:	http://www.splitted-desktop.com/~gbeauchesne/libva/%{name}_%{uver}.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	libtool
 BuildRequires:	libxext-devel
 BuildRequires:	libxfixes-devel
