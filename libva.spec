@@ -1,4 +1,5 @@
-%define uver	0.31.0-1+sds9
+%define sdsver	9
+%define uver	0.31.0-1+sds%{sdsver}
 %define sver	0.31.0
 %define apiver	0.31
 
@@ -10,7 +11,7 @@ Name:		libva
 # The rather complex versioning is due to the upstream being a patched
 # version of the real upstream libva; when the real upstream 0.5 comes
 # out we will no longer need to use Gwenole's patched version of 0.3
-Version:	0.31.0.1.sds9
+Version:	0.31.0.1.sds%{sdsver}
 Release:	%{mkrel 1}
 Summary:	Video Acceleration (VA) API for Linux
 Group:		System/Libraries
