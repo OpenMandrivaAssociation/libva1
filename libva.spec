@@ -1,4 +1,4 @@
-%define sdsver	9
+%define sdsver	10
 %define uver	0.31.0-1+sds%{sdsver}
 %define sver	0.31.0
 %define apiver	0.31
