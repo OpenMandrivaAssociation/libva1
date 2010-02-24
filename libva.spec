@@ -27,6 +27,14 @@ BuildRequires:	GL-devel
 %description
 Libva is a library providing the VA API video acceleration API.
 
+%package test
+Summary:	Test tools for %{name}
+Group:		System/Libraries
+
+%description test
+Libva is a library providing the VA API video acceleration API.
+This package provides test tools for libva.
+
 %package -n %{libname}
 Summary:	Shared library for %{name}
 Group:		System/Libraries
@@ -72,6 +80,13 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 %{_libdir}/va
 %{_bindir}/vainfo
+
+%files test
+%defattr(-,root,root,-)
+%{_bindir}/h264encode
+%{_bindir}/mpeg2vldemo
+%{_bindir}/putsurface
+%{_bindir}/test_*
 
 %files -n %{libname}
 %defattr(-,root,root,-)
