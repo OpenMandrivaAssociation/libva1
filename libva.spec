@@ -1,4 +1,4 @@
-%define sdsver	1+sds3
+%define sdsver	1+sds4
 %define sver	0.31.1
 %define uver	%sver-%sdsver
 
