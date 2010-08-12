@@ -14,7 +14,7 @@ Name:		libva
 # version of the real upstream libva; when the real upstream 0.5 comes
 # out we will no longer need to use Gwenole's patched version of 0.3
 Version:	%(echo %uver | tr +- ..)
-Release:	%{mkrel 1}
+Release:	%{mkrel 2}
 Summary:	Video Acceleration (VA) API for Linux
 Group:		System/Libraries
 License:	MIT
@@ -97,7 +97,8 @@ rm -rf %{buildroot}
 
 # this is a compatibility name for some older apps which don't use the
 # newer soname
-echo ".text"|gcc -xassembler - -o %{buildroot}%{_libdir}/libva.so.0 -shared -Wl,-soname,libva.so.0 -Wl,-z,noexecstack -L%{buildroot}%{_libdir} -lva-x11
+echo ".text"|gcc -xassembler - -o %{buildroot}%{_libdir}/libva.so.0.0 -shared -Wl,-soname,libva.so.0 -Wl,-z,noexecstack -L%{buildroot}%{_libdir} -lva-x11
+ln -s libva.so.0.0 %{buildroot}%{_libdir}/libva.so.0
 
 find %{buildroot} -regex ".*\.la$" | xargs rm -f --
 
