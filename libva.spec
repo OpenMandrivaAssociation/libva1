@@ -14,7 +14,7 @@ Name:		libva
 # version of the real upstream libva; when the real upstream 0.5 comes
 # out we will no longer need to use Gwenole's patched version of 0.3
 Version:	%(echo %uver | tr +- ..)
-Release:	%{mkrel 2}
+Release:	%mkrel 3
 Summary:	Video Acceleration (VA) API for Linux
 Group:		System/Libraries
 License:	MIT
