@@ -4,7 +4,7 @@
 
 Name:		libva
 Version:	1.0.15
-Release:	1
+Release:	2
 Summary:	Video Acceleration (VA) API for Linux
 Group:		System/Libraries
 License:	MIT
@@ -31,6 +31,7 @@ Libva is a library providing the VA API video acceleration API.
 Summary:	Development files for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
 
 %description -n %{develname}
 The %{name}-devel package contains libraries and header files for
