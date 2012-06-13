@@ -78,7 +78,7 @@ rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
 %doc COPYING
 %{_bindir}/vainfo
 %{_bindir}/avcenc
-%{_bindir}/va_egl
+#%{_bindir}/va_egl
 %{_bindir}/loadjpeg
 %{_bindir}/h264encode
 %{_bindir}/mpeg2vldemo
