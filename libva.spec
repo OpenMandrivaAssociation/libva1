@@ -3,14 +3,14 @@
 %define develname	%mklibname va -d
 
 Name:		libva
-Version:	1.0.15
-Release:	2
+Version:	1.1.0
+Release:	1
 Summary:	Video Acceleration (VA) API for Linux
 Group:		System/Libraries
 License:	MIT
 URL:		http://freedesktop.org/wiki/Software/vaapi
 Source0:	http://cgit.freedesktop.org/vaapi/%{name}/snapshot/%{name}-%{version}.tar.bz2
-BuildRequires:	libudev-devel
+BuildRequires:	udev-devel
 BuildRequires:	libxext-devel
 BuildRequires:	libxfixes-devel
 BuildRequires:	libdrm-devel
@@ -65,7 +65,7 @@ find %{buildroot} -regex ".*\.la$" | xargs rm -f --
 rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
 
 %files -n %{libname}
-%{_libdir}/%{name}.so.%{major}*
+#%{_libdir}/%{name}.so.%{major}*
 %{_libdir}/%{name}*.so.%{major}*
 
 %files -n %{develname}
@@ -77,6 +77,8 @@ rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
 %doc COPYING
 %{_bindir}/vainfo
 %{_bindir}/avcenc
+%{_bindir}/va_egl
+%{_bindir}/loadjpeg
 %{_bindir}/h264encode
 %{_bindir}/mpeg2vldemo
 %{_bindir}/putsurface
