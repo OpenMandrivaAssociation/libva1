@@ -14,6 +14,7 @@ BuildRequires:	udev-devel
 BuildRequires:	libxext-devel
 BuildRequires:	libxfixes-devel
 BuildRequires:	libdrm-devel
+BuildRequires:	pkgconfig(egl)
 BuildRequires:	libpciaccess-devel
 BuildRequires:	mesagl-devel
 
