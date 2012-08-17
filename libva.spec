@@ -5,7 +5,7 @@
 Name:		libva
 #bump to 1.0.16 and remove older 1.1.0... upstream tagged it and then removed the tag...
 Version:	1.0.16
-Release:	1
+Release:	2
 Summary:	Video Acceleration (VA) API for Linux
 Group:		System/Libraries
 License:	MIT
