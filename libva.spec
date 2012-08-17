@@ -10,7 +10,7 @@ Summary:	Video Acceleration (VA) API for Linux
 Group:		System/Libraries
 License:	MIT
 URL:		http://freedesktop.org/wiki/Software/vaapi
-Source0:	http://cgit.freedesktop.org/vaapi/%{name}/snapshot/%{name}-%{version}.tar.bz2
+Source0:	http://cgit.freedesktop.org/vaapi/%{name}/snapshot/%{name}-%{version}.tar.gz
 BuildRequires:	udev-devel
 BuildRequires:	libxext-devel
 BuildRequires:	libxfixes-devel
