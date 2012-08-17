@@ -33,8 +33,8 @@ Libva is a library providing the VA API video acceleration API.
 %package -n %{develname}
 Summary:	Development files for %{name}
 Group:		Development/C
-Requires:	%{libname} = %{version}-%{release}
-Provides:	%{name}-devel = %{version}-%{release}
+Requires:	%{libname} = %{EVRD}
+Provides:	%{name}-devel = %{EVRD}
 
 %description -n %{develname}
 The %{name}-devel package contains libraries and header files for
@@ -43,7 +43,7 @@ developing applications that use %{name}.
 %package	utils
 Summary:	Tools for %{name} (including vainfo)
 Group:		System/Libraries
-Requires:	%{libname} = %{version}-%{release}
+Requires:	%{libname} = %{EVRD}
 Obsoletes:	vainfo
 
 %description	utils
