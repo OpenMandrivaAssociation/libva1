@@ -3,7 +3,8 @@
 %define develname	%mklibname va -d
 
 Name:		libva
-Version:	1.1.0
+#bump to 1.0.16 and remove older 1.1.0... upstream tagged it and then removed the tag...
+Version:	1.0.16
 Release:	1
 Summary:	Video Acceleration (VA) API for Linux
 Group:		System/Libraries
@@ -17,6 +18,7 @@ BuildRequires:	libdrm-devel
 BuildRequires:	pkgconfig(egl)
 BuildRequires:	libpciaccess-devel
 BuildRequires:	mesagl-devel
+Epoch:		2
 
 %description
 Libva is a library providing the VA API video acceleration API.
