@@ -1,24 +1,27 @@
+Epoch:		2
 %define major		1
 %define libname		%mklibname va %{major}
 %define develname	%mklibname va -d
 
 Name:		libva
-#bump to 1.0.16 and remove older 1.1.0... upstream tagged it and then removed the tag...
-Version:	1.0.16
-Release:	2
+Version:	1.1.0
+Release:	1
 Summary:	Video Acceleration (VA) API for Linux
 Group:		System/Libraries
 License:	MIT
 URL:		http://freedesktop.org/wiki/Software/vaapi
-Source0:	http://cgit.freedesktop.org/vaapi/%{name}/snapshot/%{name}-%{version}.tar.gz
-BuildRequires:	udev-devel
-BuildRequires:	libxext-devel
-BuildRequires:	libxfixes-devel
-BuildRequires:	libdrm-devel
-BuildRequires:	pkgconfig(egl)
+Source0:	http://www.freedesktop.org/software/vaapi/releases/libva/%{name}-%{version}.tar.bz2
+# grabbed from fedora (originally from sds)
+Patch0:		101_dont_install_test_programs.patch
+# BR
+BuildRequires:	pkgconfig(udev)
+BuildRequires:	pkgconfig(xext)
+BuildRequires:	pkgconfig(xfixes)
+BuildRequires:	pkgconfig(libdrm)
+#BuildRequires:	pkgconfig(egl)
 BuildRequires:	libpciaccess-devel
-BuildRequires:	mesagl-devel
-Epoch:		2
+BuildRequires:	pkgconfig(gl)
+
 
 %description
 Libva is a library providing the VA API video acceleration API.
@@ -44,7 +47,7 @@ developing applications that use %{name}.
 Summary:	Tools for %{name} (including vainfo)
 Group:		System/Libraries
 Requires:	%{libname} = %{EVRD}
-Obsoletes:	vainfo
+Obsoletes:	vainfo < %{EVRD}
 
 %description	utils
 The %{name}-utils package contains tools that are provided as part
@@ -53,23 +56,31 @@ of %{name}, including the vainfo tool for determining what (if any)
 
 %prep
 %setup -q
-# % {name}-% {version}
+# disable install of test programs
+%patch0 -p1
 
 %build
-autoreconf -v -i 
+#autoreconf -i
 %configure2_5x --disable-static --enable-glx
 %make
 
 %install
-make install DESTDIR=%{buildroot} INSTALL="install -p"
+rm -rf %{buildroot}
+%makeinstall_std
+
 find %{buildroot} -regex ".*\.la$" | xargs rm -f --
 
 # dummy driver has no good place, so get rid of it
 rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
 
 %files -n %{libname}
-#%{_libdir}/%{name}.so.%{major}*
-%{_libdir}/%{name}*.so.%{major}*
+%{_libdir}/%{name}.so.%{major}*
+#{_libdir}/%{name}-egl.so.%{major}*
+%{_libdir}/%{name}-drm.so.%{major}*
+%{_libdir}/%{name}-glx.so.%{major}*
+%{_libdir}/%{name}-tpi.so.%{major}*
+%{_libdir}/%{name}-x11.so.%{major}*
+%dir %{_libdir}/dri
 
 %files -n %{develname}
 %{_includedir}/va
@@ -78,10 +89,9 @@ rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
 
 %files utils
 %doc COPYING
-%{_bindir}/vainfo
 %{_bindir}/avcenc
-#%{_bindir}/va_egl
-%{_bindir}/loadjpeg
 %{_bindir}/h264encode
+%{_bindir}/loadjpeg
 %{_bindir}/mpeg2vldemo
-%{_bindir}/putsurface
+%{_bindir}/putsurface*
+%{_bindir}/vainfo
