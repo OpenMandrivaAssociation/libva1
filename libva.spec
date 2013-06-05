@@ -1,10 +1,10 @@
-Epoch:		2
-%define major		1
-%define libname		%mklibname va %{major}
-%define develname	%mklibname va -d
+%define major 1
+%define libname %mklibname va %{major}
+%define develname %mklibname va -d
 
 Name:		libva
-Version:	1.1.0
+Version:	1.1.1
+Epoch:		2
 Release:	1
 Summary:	Video Acceleration (VA) API for Linux
 Group:		System/Libraries
@@ -13,7 +13,6 @@ URL:		http://freedesktop.org/wiki/Software/vaapi
 Source0:	http://www.freedesktop.org/software/vaapi/releases/libva/%{name}-%{version}.tar.bz2
 # grabbed from fedora (originally from sds)
 Patch0:		101_dont_install_test_programs.patch
-# BR
 BuildRequires:	pkgconfig(udev)
 BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xfixes)
