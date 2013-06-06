@@ -12,7 +12,7 @@ License:	MIT
 URL:		http://freedesktop.org/wiki/Software/vaapi
 Source0:	http://www.freedesktop.org/software/vaapi/releases/libva/%{name}-%{version}.tar.bz2
 # grabbed from fedora (originally from sds)
-Patch0:		101_dont_install_test_programs.patch
+#Patch0:		101_dont_install_test_programs.patch
 BuildRequires:	pkgconfig(udev)
 BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xfixes)
@@ -56,15 +56,17 @@ of %{name}, including the vainfo tool for determining what (if any)
 %prep
 %setup -q
 # disable install of test programs
-%patch0 -p1
+#patch0 -p1
 
 %build
 #autoreconf -i
-%configure2_5x --disable-static --enable-glx
+%configure2_5x \
+		--disable-static \
+        --enable-glx
+
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 find %{buildroot} -regex ".*\.la$" | xargs rm -f --
