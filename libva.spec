@@ -12,7 +12,7 @@ License:	MIT
 Url:		http://freedesktop.org/wiki/Software/vaapi
 Source0:	http://www.freedesktop.org/software/vaapi/releases/libva/%{name}-%{version}.tar.bz2
 
-#BuildRequires:	pkgconfig(egl)
+BuildRequires:	pkgconfig(egl)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(libdrm)
 BuildRequires:	pkgconfig(pciaccess)
@@ -67,7 +67,7 @@ rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
 
 %files -n %{libname}
 %{_libdir}/%{name}.so.%{major}*
-#{_libdir}/%{name}-egl.so.%{major}*
+%{_libdir}/%{name}-egl.so.%{major}*
 %{_libdir}/%{name}-drm.so.%{major}*
 %{_libdir}/%{name}-glx.so.%{major}*
 %{_libdir}/%{name}-tpi.so.%{major}*
@@ -82,6 +82,7 @@ rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
 %files utils
 %doc COPYING
 %{_bindir}/avcenc
+%{_bindir}/mpeg2vaenc
 %{_bindir}/h264encode
 %{_bindir}/loadjpeg
 %{_bindir}/mpeg2vldemo
