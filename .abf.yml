@@ -1,2 +1,4 @@
+removed_sources:
+  libva-1.1.1.tar.bz2: 755e488677a196c9ac18b8c0d11aa2a56e050306
 sources:
-  "libva-1.1.1.tar.bz2": 755e488677a196c9ac18b8c0d11aa2a56e050306
+  libva-1.2.1.tar.bz2: f716a4cadd670b14f44a2e833f96a2c509956339
