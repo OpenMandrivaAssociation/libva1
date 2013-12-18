@@ -68,6 +68,7 @@ rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
 %files -n %{libname}
 %{_libdir}/%{name}.so.%{major}*
 %{_libdir}/%{name}-egl.so.%{major}*
+%{_libdir}/%{name}-wayland.so.%{major}*
 %{_libdir}/%{name}-drm.so.%{major}*
 %{_libdir}/%{name}-glx.so.%{major}*
 %{_libdir}/%{name}-tpi.so.%{major}*
