@@ -11,7 +11,7 @@ Group:		System/Libraries
 License:	MIT
 Url:		http://freedesktop.org/wiki/Software/vaapi
 Source0:	http://www.freedesktop.org/software/vaapi/releases/libva/%{name}-%{version}.tar.bz2
-
+Patch0:         libva-1.3.1-firefox-crash-fix.patch
 BuildRequires:	pkgconfig(egl)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(libdrm)
@@ -51,6 +51,7 @@ of %{name}, including the vainfo tool for determining what (if any)
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure2_5x \
