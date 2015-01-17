@@ -82,6 +82,7 @@ rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
 %files utils
 %doc COPYING
 %{_bindir}/avcenc
+%{_bindir}/jpegenc
 %{_bindir}/mpeg2vaenc
 %{_bindir}/h264encode
 %{_bindir}/loadjpeg
