@@ -1,7 +1,3 @@
-removed_sources:
-  libva-1.1.1.tar.bz2: 755e488677a196c9ac18b8c0d11aa2a56e050306
-  libva-1.2.1.tar.bz2: f716a4cadd670b14f44a2e833f96a2c509956339
-  libva-1.3.0.tar.bz2: db24df81b67e42df484d6e7a8b3c5b456aca033e
-  libva-1.3.1.tar.bz2: 3b48d9062f5542a1c5e6f3436429e5cceb9982dc
+---
 sources:
-  libva-1.5.0.tar.bz2: f83cc0d1dd42701ec79d943d9462f092d32c51fa
+  libva-1.5.1.tar.bz2: b315a86fcd3bd1e073e2c1b62416550885cd7420
