@@ -5,12 +5,14 @@
 Summary:	Video Acceleration (VA) API for Linux
 Name:		libva
 Epoch:		2
-Version:	1.7.3
+Version:	1.8.0
 Release:	1
 Group:		System/Libraries
 License:	MIT
 Url:		http://freedesktop.org/wiki/Software/vaapi
 Source0:	http://www.freedesktop.org/software/vaapi/releases/libva/%{name}-%{version}.tar.bz2
+# utils
+Source1:	https://github.com/01org/libva-utils/releases/download/%{version}/%{name}-utils-%{version}.tar.bz2
 BuildRequires:	pkgconfig(egl)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(libdrm)
@@ -49,7 +51,7 @@ of %{name}, including the vainfo tool for determining what (if any)
 %{name} support is available on a system.
 
 %prep
-%setup -q
+%setup -q -a 1
 
 %build
 %configure \
@@ -58,8 +60,14 @@ of %{name}, including the vainfo tool for determining what (if any)
 
 %make
 
+pushd %{name}-utils-%{version}
+%configure
+%make
+popd
+
 %install
 %makeinstall_std
+%makeinstall_std -C %{name}-utils-%{version}
 
 # dummy driver has no good place, so get rid of it
 rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
