@@ -1,6 +1,9 @@
 %define major 1
 %define libname %mklibname va %{major}
 %define devname %mklibname va -d
+# disable utils after upgrade, that build libva
+# and enable utils
+%bcond_with utils
 
 Summary:	Video Acceleration (VA) API for Linux
 Name:		libva
@@ -41,14 +44,17 @@ Provides:	%{name}-devel = %{EVRD}
 The %{name}-devel package contains libraries and header files for
 developing applications that use %{name}.
 
+%if %{with utils}
 %package	utils
 Summary:	Tools for %{name} (including vainfo)
 Group:		System/Libraries
+BuildRequires:	%{name}-devel = %{EVRD}
 
 %description	utils
 The %{name}-utils package contains tools that are provided as part
 of %{name}, including the vainfo tool for determining what (if any)
 %{name} support is available on a system.
+%endif
 
 %prep
 %setup -q -a 1
@@ -60,14 +66,18 @@ of %{name}, including the vainfo tool for determining what (if any)
 
 %make
 
+%if %{with utils}
 pushd %{name}-utils-%{version}
 %configure
 %make
 popd
+%endif
 
 %install
 %makeinstall_std
+%if %{with utils}
 %makeinstall_std -C %{name}-utils-%{version}
+%endif
 
 # dummy driver has no good place, so get rid of it
 rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
@@ -83,12 +93,13 @@ rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
 %dir %{_libdir}/dri
 
 %files -n %{devname}
+%doc COPYING
 %{_includedir}/va
 %{_libdir}/%{name}*.so
 %{_libdir}/pkgconfig/%{name}*.pc
 
+%if %{with utils}
 %files utils
-%doc COPYING
 %{_bindir}/avcenc
 %{_bindir}/jpegenc
 %{_bindir}/mpeg2vaenc
@@ -97,3 +108,4 @@ rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
 %{_bindir}/mpeg2vldemo
 %{_bindir}/putsurface*
 %{_bindir}/vainfo
+%endif
