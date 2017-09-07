@@ -87,7 +87,6 @@ popd
 %{_libdir}/%{name}-glx.so.%{major}*
 %{_libdir}/%{name}-tpi.so.%{major}*
 %{_libdir}/%{name}-x11.so.%{major}*
-%dir %{_libdir}/dri
 
 %files -n %{devname}
 %doc COPYING
