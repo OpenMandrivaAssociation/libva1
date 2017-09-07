@@ -79,9 +79,6 @@ popd
 %makeinstall_std -C %{name}-utils-%{version}
 %endif
 
-# dummy driver has no good place, so get rid of it
-rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
-
 %files -n %{libname}
 %{_libdir}/%{name}.so.%{major}*
 %{_libdir}/%{name}-egl.so.%{major}*
