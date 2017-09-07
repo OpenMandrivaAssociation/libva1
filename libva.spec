@@ -8,7 +8,7 @@
 Summary:	Video Acceleration (VA) API for Linux
 Name:		libva
 Epoch:		2
-Version:	1.8.0
+Version:	1.8.3
 Release:	1
 Group:		System/Libraries
 License:	MIT
@@ -79,9 +79,6 @@ popd
 %makeinstall_std -C %{name}-utils-%{version}
 %endif
 
-# dummy driver has no good place, so get rid of it
-rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
-
 %files -n %{libname}
 %{_libdir}/%{name}.so.%{major}*
 %{_libdir}/%{name}-egl.so.%{major}*
@@ -90,7 +87,6 @@ rm %{buildroot}%{_libdir}/dri/dummy_drv_video.so
 %{_libdir}/%{name}-glx.so.%{major}*
 %{_libdir}/%{name}-tpi.so.%{major}*
 %{_libdir}/%{name}-x11.so.%{major}*
-%dir %{_libdir}/dri
 
 %files -n %{devname}
 %doc COPYING
