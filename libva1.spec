@@ -22,8 +22,10 @@ BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(libdrm)
 BuildRequires:	pkgconfig(pciaccess)
 BuildRequires:	pkgconfig(udev)
+BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xext)
 BuildRequires:	pkgconfig(xfixes)
+BuildRequires:	pkgconfig(wayland-client)
 
 %description
 Libva is a library providing the VA API video acceleration API.
