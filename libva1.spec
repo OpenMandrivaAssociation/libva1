@@ -30,12 +30,14 @@ BuildRequires:	pkgconfig(wayland-client)
 %description
 Libva is a library providing the VA API video acceleration API.
 
+%if "%{_lib}" != "lib"
 %package -n %{libname}
 Summary:	Shared library for %{name}
 Group:		System/Libraries
 
 %description -n %{libname}
 Libva is a library providing the VA API video acceleration API.
+%endif
 
 %package -n %{devname}
 Summary:	Development files for %{name}
@@ -87,7 +89,11 @@ rm -rf %{buildroot}%{_includedir} \
 	%{buildroot}%{_libdir}/pkgconfig
 %endif
 
+%if "%{_lib}" != "lib"
 %files -n %{libname}
+%else
+%files
+%endif
 %{_libdir}/libva.so.%{major}*
 %{_libdir}/libva-egl.so.%{major}*
 %{_libdir}/libva-wayland.so.%{major}*
