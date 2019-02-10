@@ -4,18 +4,19 @@
 # disable utils after upgrade, that build libva
 # and enable utils
 %bcond_with utils
+# No -devel for compat packages...
+%bcond_with devel
 
 Summary:	Video Acceleration (VA) API for Linux
-Name:		libva
-Epoch:		2
+Name:		libva1
 Version:	1.8.3
 Release:	1
 Group:		System/Libraries
 License:	MIT
 Url:		http://freedesktop.org/wiki/Software/vaapi
-Source0:	http://www.freedesktop.org/software/vaapi/releases/libva/%{name}-%{version}.tar.bz2
+Source0:	http://www.freedesktop.org/software/vaapi/releases/libva/libva-%{version}.tar.bz2
 # utils
-Source1:	https://github.com/01org/libva-utils/releases/download/%{version}/%{name}-utils-%{version}.tar.bz2
+Source1:	https://github.com/01org/libva-utils/releases/download/%{version}/libva-utils-%{version}.tar.bz2
 BuildRequires:	pkgconfig(egl)
 BuildRequires:	pkgconfig(gl)
 BuildRequires:	pkgconfig(libdrm)
@@ -57,7 +58,7 @@ of %{name}, including the vainfo tool for determining what (if any)
 %endif
 
 %prep
-%setup -q -a 1
+%setup -n libva-%{version} -a 1
 
 %build
 %configure \
@@ -76,23 +77,30 @@ popd
 %install
 %makeinstall_std
 %if %{with utils}
-%makeinstall_std -C %{name}-utils-%{version}
+%makeinstall_std -C libva-utils-%{version}
+%endif
+%if ! %{with devel}
+rm -rf %{buildroot}%{_includedir} \
+	%{buildroot}%{_libdir}/*.so \
+	%{buildroot}%{_libdir}/pkgconfig
 %endif
 
 %files -n %{libname}
-%{_libdir}/%{name}.so.%{major}*
-%{_libdir}/%{name}-egl.so.%{major}*
-%{_libdir}/%{name}-wayland.so.%{major}*
-%{_libdir}/%{name}-drm.so.%{major}*
-%{_libdir}/%{name}-glx.so.%{major}*
-%{_libdir}/%{name}-tpi.so.%{major}*
-%{_libdir}/%{name}-x11.so.%{major}*
+%{_libdir}/libva.so.%{major}*
+%{_libdir}/libva-egl.so.%{major}*
+%{_libdir}/libva-wayland.so.%{major}*
+%{_libdir}/libva-drm.so.%{major}*
+%{_libdir}/libva-glx.so.%{major}*
+%{_libdir}/libva-tpi.so.%{major}*
+%{_libdir}/libva-x11.so.%{major}*
 
+%if %{with devel}
 %files -n %{devname}
 %doc COPYING
 %{_includedir}/va
-%{_libdir}/%{name}*.so
-%{_libdir}/pkgconfig/%{name}*.pc
+%{_libdir}/libva*.so
+%{_libdir}/pkgconfig/libva*.pc
+%endif
 
 %if %{with utils}
 %files utils
