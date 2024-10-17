@@ -13,7 +13,7 @@ Version:	1.8.3
 Release:	2
 Group:		System/Libraries
 License:	MIT
-Url:		http://freedesktop.org/wiki/Software/vaapi
+Url:		https://freedesktop.org/wiki/Software/vaapi
 Source0:	http://www.freedesktop.org/software/vaapi/releases/libva/libva-%{version}.tar.bz2
 # utils
 Source1:	https://github.com/01org/libva-utils/releases/download/%{version}/libva-utils-%{version}.tar.bz2
